@@ -17,6 +17,7 @@ The proxy forwards JSON to your n8n Webhook while keeping your webhook URL priva
 - N8N_PROXY_SECRET = a long random string
 - (optional) N8N_AUTH_HEADER = e.g. `Basic base64(user:pass)`
 - (optional) N8N_WEBHOOK_PATH = default webhook path like `signup`
+- (optional) N8N_WEBHOOK_PREFIX = webhook or webhook-test (defaults to webhook)
 
 ### Frontend Env (local .env.local and Vercel with VITE_ prefix)
 - VITE_PROXY_PATH = /api/n8n-proxy

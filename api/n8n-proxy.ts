@@ -68,7 +68,8 @@ export default async function handler(req: Request): Promise<Response> {
     return jsonResponse(400, { error: 'Missing webhook path. Include { "path": "your/webhook" } or set N8N_WEBHOOK_PATH.' }, corsHeaders(origin));
   }
 
-  const url = `${baseUrl.replace(/\/$/, '')}/webhook/${path.replace(/^\//, '')}`;
+  const prefix = (process.env.N8N_WEBHOOK_PREFIX || 'webhook').replace(/\/$/, '');
+  const url = `${baseUrl.replace(/\/$/, '')}/${prefix}/${path.replace(/^\//, '')}`;
 
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 30000); // 30s timeout
