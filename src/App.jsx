@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-
-const WEBHOOK_URL = "https://hudsonsawyer.app.n8n.cloud/webhook/signup";
+import { callN8n } from "./lib/n8nClient";
 
 export default function App() {
   const [form, setForm] = useState({ company: "", email: "", phone: "" });
@@ -29,20 +28,14 @@ export default function App() {
 
     setLoading(true);
     try {
-      const res = await fetch(WEBHOOK_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: form.email.trim(),
-          company: form.company.trim(),
-          phone: form.phone.trim(),
-        }),
-        mode: "cors",
+      const { ok, data, status } = await callN8n("signup", {
+        email: form.email.trim(),
+        company: form.company.trim(),
+        phone: form.phone.trim(),
       });
 
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok || data.success === false) {
-        throw new Error(data?.message || "Signup failed. Please try again.");
+      if (!ok || data?.success === false) {
+        throw new Error(data?.message || `Signup failed (status ${status}). Please try again.`);
       }
       setResult(data);
       setToast({ type: "success", msg: data.message || "Welcome to PermitPulse!" });
