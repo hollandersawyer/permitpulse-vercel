@@ -73,7 +73,7 @@ export default function App() {
               Be first to every roofing job
             </h1>
             <p className="mt-4 text-slate-600 text-lg">
-              We scan Hartford & West Hartford permits every morning and send the ones that match your business. Quick, clean, and actionable.
+              We scan Hartford County permits every morning and send the ones that match your business. Quick, clean, and actionable.
             </p>
             <ul className="mt-6 space-y-2 text-slate-700">
               <li className="flex items-start gap-3"><span className="mt-1 h-2 w-2 rounded-full bg-blue-600"/>Daily email digest with fresh permits</li>
@@ -111,7 +111,7 @@ export default function App() {
               <h3 className="text-xl font-semibold">Trial</h3>
               <p className="text-slate-600 mt-1">7 days free</p>
               <ul className="mt-4 space-y-2 text-sm">
-                <li>✓ Daily permit emails (Hartford + West Hartford)</li>
+                <li>✓ Daily permit emails (Hartford County)</li>
                 <li>✓ Basic keyword filters</li>
                 <li>✓ Email support</li>
               </ul>
@@ -136,7 +136,7 @@ export default function App() {
           <h2 className="text-3xl font-bold tracking-tight">FAQ</h2>
           <div className="mt-6 grid md:grid-cols-2 gap-6">
             <Faq q="When will I get my first permits?" a="Tomorrow at 7 AM Eastern. We email you a clean list with links and key details." />
-            <Faq q="Which towns are included?" a="Hartford and West Hartford to start. More as we expand." />
+            <Faq q="Which area is included?" a="Hartford County to start. More as we expand." />
             <Faq q="Can I cancel anytime?" a="Yes. Trial is free for 7 days; then $49/month unless you cancel." />
             <Faq q="Do I need a credit card for the trial?" a="Nope. Email + company + phone is all you need to start." />
           </div>
