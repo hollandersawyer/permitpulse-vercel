@@ -38,5 +38,24 @@ await callN8n('signup', { email, company, phone })
 4. Add the environment variables above in Vercel.
 5. Deploy.
 
+## Stripe + Email (Resend)
+Serverless functions:
+- POST /api/checkout → creates a Stripe Checkout session
+- POST /api/stripe-webhook → receives Stripe webhooks; on checkout.session.completed, sends welcome email via Resend
+
+Environment variables (Vercel → Settings → Environment Variables):
+- STRIPE_SECRET_KEY = sk_test_...
+- STRIPE_PRICE_ID = price_...
+- STRIPE_WEBHOOK_SECRET = whsec_... (from Stripe webhook settings)
+- RESEND_API_KEY = re_... (optional, if you want email)
+- APP_URL = https://YOUR_DOMAIN.vercel.app
+
+Frontend flow:
+- After signup, POST to /api/checkout with { customer_email, metadata }, then redirect to returned url.
+
+Stripe Dashboard setup:
+- Create Product+Price → copy Price ID
+- Developers → Webhooks → Add endpoint → https://YOUR_DOMAIN/api/stripe-webhook → select checkout.session.completed → copy Signing secret → put into STRIPE_WEBHOOK_SECRET.
+
 ## Notes
 If you call n8n directly from the browser, you may hit CORS. The proxy avoids that and lets you add auth and rate limits.
